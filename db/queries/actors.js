@@ -32,6 +32,7 @@ async function deleteActor(id) {
 }
 
 // film - actor join table
+//these queries below require joins
 
 async function linkActorToFilm(filmId, actorId) {
   await pool.query(

@@ -23,3 +23,7 @@ exports.getGenreById = async (req, res) => {
     //
   }
 };
+
+exports.getCreateForm = async (req, res) => {
+  res.render("genres/new");
+};

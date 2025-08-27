@@ -27,3 +27,13 @@ exports.getGenreById = async (req, res) => {
 exports.getCreateForm = async (req, res) => {
   res.render("genres/new");
 };
+
+exports.addNewGenre = async (req, res) => {
+  const { name, description } = req.body;
+  try {
+    await db.addGenre({ name, description });
+    res.redirect("/genres");
+  } catch (err) {
+    console.error(err);
+  }
+};

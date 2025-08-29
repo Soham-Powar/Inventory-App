@@ -1,8 +1,86 @@
-<h1>Add Genre</h1>
-<form action="/genres/new" method="POST">
-	<label for="name">Genre name:</label>
-	<input type="text" id="name" name="name" required>
-	<label for="description">Description:</label>
-	<input type="text" id="description" name="description" required>
-	<button type="submit">Create</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Add Genre</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			max-width: 600px;
+			margin: 40px auto;
+			padding: 0 20px;
+			line-height: 1.6;
+		}
+
+		h1 {
+			text-align: center;
+			color: #333;
+			margin-bottom: 30px;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+
+		label {
+			font-weight: bold;
+		}
+
+		input[type="text"] {
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		button {
+			padding: 12px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		a.back-link {
+			display: inline-block;
+			margin-top: 20px;
+			text-decoration: none;
+			color: #4CAF50;
+			font-weight: bold;
+		}
+
+		a.back-link:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Add New Genre</h1>
+
+	<form action="/genres/new" method="POST">
+		<label for="name">Genre Name:</label>
+		<input type="text" id="name" name="name" required>
+
+		<label for="description">Description:</label>
+		<input type="text" id="description" name="description" required>
+
+		<button type="submit">Create</button>
+	</form>
+
+	<a href="/genres" class="back-link">&larr; Back to Genres</a>
+
+</body>
+
+</html>

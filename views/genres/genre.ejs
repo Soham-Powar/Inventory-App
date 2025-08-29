@@ -1,5 +1,59 @@
-<h1>Genre: <%= genre.name %>
-</h1>
-<ul>
-	<%= genre.description%>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Genre: <%= genre.name %>
+	</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			max-width: 800px;
+			margin: 40px auto;
+			padding: 0 20px;
+			line-height: 1.6;
+		}
+
+		h1 {
+			color: #333;
+			margin-bottom: 10px;
+		}
+
+		.description {
+			background-color: #f9f9f9;
+			padding: 15px;
+			border-left: 5px solid #4CAF50;
+			border-radius: 4px;
+			margin-bottom: 20px;
+		}
+
+		a.back-link {
+			display: inline-block;
+			margin-top: 10px;
+			text-decoration: none;
+			color: #4CAF50;
+			font-weight: bold;
+		}
+
+		a.back-link:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Genre: <%= genre.name %>
+	</h1>
+
+	<div class="description">
+		<p>
+			<%= genre.description %>
+		</p>
+	</div>
+
+	<a href="/genres" class="back-link">&larr; Back to all genres</a>
+
+</body>
+
+</html>

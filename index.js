@@ -19,7 +19,7 @@ app.use("/actors", actorRouter);
 // app.use("/films", filmRouter);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to FilmYuHu");
+  res.render("welcome");
 });
 
 const PORT = 3001;

@@ -1,6 +1,6 @@
 const db = require("../db/queries/genres");
 
-exports.getAllGenres = async (req, res) => {
+exports.genresGet = async (req, res) => {
   try {
     const genres = await db.getAllGenres();
     res.render("genres/index", { genres });
@@ -10,7 +10,7 @@ exports.getAllGenres = async (req, res) => {
   }
 };
 
-exports.getGenreById = async (req, res) => {
+exports.genresIdGet = async (req, res) => {
   try {
     const genre = await db.getGenreById(req.params.id);
     if (!genre) {
@@ -24,14 +24,15 @@ exports.getGenreById = async (req, res) => {
   }
 };
 
-exports.getCreateForm = async (req, res) => {
+exports.genresNewGet = async (req, res) => {
   res.render("genres/new");
 };
 
-exports.addNewGenre = async (req, res) => {
+exports.genresNewPost = async (req, res) => {
   const { name, description } = req.body;
   try {
     await db.addGenre({ name, description });
+    //gap in the db id genre
     res.redirect("/genres");
   } catch (err) {
     console.error(err);

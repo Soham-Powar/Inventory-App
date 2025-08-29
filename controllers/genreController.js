@@ -35,6 +35,8 @@ exports.genresNewPost = async (req, res) => {
     //gap in the db id genre
     res.redirect("/genres");
   } catch (err) {
+    //do proper error handling
+    res.redirect("/genres");
     console.error(err);
   }
 };

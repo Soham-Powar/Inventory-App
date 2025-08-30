@@ -5,6 +5,7 @@ const app = express();
 
 const genreRouter = require("./routes/genreRouter");
 const actorRouter = require("./routes/actorRouter");
+const filmRouter = require("./routes/filmRouter");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/genres", genreRouter);
 app.use("/actors", actorRouter);
-// app.use("/films", filmRouter);
+app.use("/films", filmRouter);
 
 app.get("/", (req, res) => {
   res.render("welcome");

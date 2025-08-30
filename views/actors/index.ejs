@@ -55,7 +55,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
 				<th>Name</th>
 				<th>Birth Year</th>
 				<th>Nationality</th>
@@ -64,14 +63,11 @@
 		<tbody>
 			<% if (actors.length===0) { %>
 				<tr>
-					<td colspan="4" style="text-align: center;">No actors found</td>
+					<td colspan="3" style="text-align: center;">No actors found</td>
 				</tr>
 				<% } else { %>
 					<% actors.forEach(actor=> { %>
 						<tr>
-							<td>
-								<%= actor.id %>
-							</td>
 							<td>
 								<%= actor.name %>
 							</td>

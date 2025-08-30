@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Films</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			max-width: 900px;
+			margin: 40px auto;
+			padding: 0 20px;
+		}
+
+		h1 {
+			text-align: center;
+			color: #333;
+			margin-bottom: 30px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		th,
+		td {
+			padding: 12px;
+			border-bottom: 1px solid #ccc;
+			text-align: left;
+		}
+
+		th {
+			background-color: #f2f2f2;
+		}
+
+		tr:hover {
+			background-color: #f9f9f9;
+		}
+
+		a.new-film {
+			display: inline-block;
+			margin-bottom: 20px;
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			text-decoration: none;
+			border-radius: 4px;
+		}
+
+		a.new-film:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Films</h1>
+
+	<a href="/films/new" class="new-film">Add New Film</a>
+	<a href="/" class="new-film">Back to Home</a>
+
+	<% if (films.length===0) { %>
+		<p>No films available.</p>
+		<% } else { %>
+			<table>
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Genre</th>
+						<th>Release Year</th>
+						<th>Rating</th>
+						<th>Watched</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% films.forEach(film=> { %>
+						<tr>
+							<td>
+								<%= film.title %>
+							</td>
+							<td>
+								<%= film.genre %>
+							</td>
+							<td>
+								<%= film.release_year %>
+							</td>
+							<td>
+								<%= film.rating %>
+							</td>
+							<td>
+								<form action="/films/<%= film.id %>/toggle-watched" method="POST">
+									<input type="checkbox" name="watched" onchange="this.form.submit()" <%=film.watched
+										? "checked" : "" %> >
+								</form>
+							</td>
+						</tr>
+						<% }) %>
+				</tbody>
+			</table>
+			<% } %>
+
+</body>
+
+</html>

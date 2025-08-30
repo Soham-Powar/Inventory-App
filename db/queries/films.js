@@ -1,7 +1,7 @@
 const pool = require("../pool");
 
 async function getAllFilms() {
-  const { rows } = pool.query(
+  const { rows } = await pool.query(
     `select f.*, g.name as genre
 	from films f
 	join genres g on f.genre_id = g.id
@@ -11,7 +11,7 @@ async function getAllFilms() {
 }
 
 async function getFilmById(id) {
-  const { rows } = pool.query(
+  const { rows } = await pool.query(
     `select f.*, g.name as genre
 		from films f
 		join genres g on f.genre_id = g.id
@@ -53,4 +53,18 @@ async function deleteFilm(id) {
   await pool.query("DELETE FROM films WHERE id = $1", [id]);
 }
 
-module.exports = { getAllFilms, getFilmById, addFilm, updateFilm, deleteFilm };
+async function updateFilmWatched(filmId, watched) {
+  await pool.query("UPDATE films SET watched = $1 WHERE id = $2", [
+    watched,
+    filmId,
+  ]);
+}
+
+module.exports = {
+  getAllFilms,
+  getFilmById,
+  addFilm,
+  updateFilm,
+  deleteFilm,
+  updateFilmWatched,
+};

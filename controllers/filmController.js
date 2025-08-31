@@ -23,3 +23,9 @@ exports.toggleWatched = async (req, res) => {
     res.send("Error updating watched status");
   }
 };
+
+exports.filmsNewGet = async (req, res) => {
+  const genreDb = require("../db/queries/genres");
+  const allGenres = await genreDb.getAllGenres();
+  res.render("films/new", { allGenres });
+};

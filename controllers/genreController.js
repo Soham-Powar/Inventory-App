@@ -40,3 +40,5 @@ exports.genresNewPost = async (req, res) => {
     console.error(err);
   }
 };
+
+// hello i am the creator's girlfriend, if you are reading this, stay away from him!!! 😡

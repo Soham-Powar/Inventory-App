@@ -3,7 +3,7 @@ const db = require("../db/queries/films");
 exports.filmsGet = async (req, res) => {
   try {
     const films = await db.getAllFilms();
-    console.log(films);
+    // console.log(films);
     res.render("films/index", { films });
   } catch (err) {
     console.error(err);
@@ -28,4 +28,26 @@ exports.filmsNewGet = async (req, res) => {
   const genreDb = require("../db/queries/genres");
   const allGenres = await genreDb.getAllGenres();
   res.render("films/new", { allGenres });
+};
+
+exports.filmsNewPost = async (req, res) => {
+  let { title, description, release_year, rating, watched, genre } = req.body;
+
+  watched = watched === "on";
+  const genre_id = genre;
+
+  try {
+    await db.addFilm({
+      title,
+      description,
+      release_year,
+      rating,
+      watched,
+      genre_id,
+    });
+    res.redirect("/films");
+  } catch (err) {
+    console.error(err);
+    res.redirect("/films");
+  }
 };

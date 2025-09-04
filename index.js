@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
   res.render("welcome");
 });
 
-const PORT = 3001;
+const PORT = 3000;
 app.listen(PORT, () => {
-  console.log("here we go");
+  console.log(`here we go ${PORT}`);
 });

@@ -27,3 +27,8 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`here we go ${PORT}`);
 });
+
+//todo
+//movie must show actors
+//actors must show movies
+//genre - movies

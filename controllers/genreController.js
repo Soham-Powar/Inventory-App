@@ -1,4 +1,5 @@
 const db = require("../db/queries/genres");
+const moviesDb = require("../db/queries/films");
 
 exports.genresGet = async (req, res) => {
   try {
@@ -13,13 +14,18 @@ exports.genresGet = async (req, res) => {
 exports.genresIdGet = async (req, res) => {
   try {
     const genre = await db.getGenreById(req.params.id);
+
     if (!genre) {
       //404
       return res.status(404).json({ error: "Genre not found" });
     }
-    res.render("genres/genre", { genre });
+
+    const films = await moviesDb.getFilmsByGenre(genre.name);
+
+    res.render("genres/genre", { genre, films });
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
     //
   }
 };

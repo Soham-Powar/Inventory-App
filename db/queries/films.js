@@ -10,6 +10,17 @@ async function getAllFilms() {
   return rows;
 }
 
+async function getFilmsByGenre(genreName) {
+  const { rows } = await pool.query(
+    `select f.* 
+    from films f
+    join genres g on f.genre_id = g.id
+    where g.name = $1`,
+    [genreName]
+  );
+  return rows;
+}
+
 async function getFilmById(id) {
   const { rows } = await pool.query(
     `select f.*, g.name as genre
@@ -67,4 +78,5 @@ module.exports = {
   updateFilm,
   deleteFilm,
   updateFilmWatched,
+  getFilmsByGenre,
 };

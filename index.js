@@ -31,4 +31,3 @@ app.listen(PORT, () => {
 //todo
 //movie must show actors
 //actors must show movies
-//genre - movies

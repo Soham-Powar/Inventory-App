@@ -24,7 +24,7 @@ async function updateGenre(id, { name, description }) {
   );
 }
 
-async function deleteGenre(id) {
+async function deleteGenreById(id) {
   await pool.query("DELETE FROM genres WHERE id = $1", [id]);
 }
 
@@ -33,5 +33,5 @@ module.exports = {
   getGenreById,
   addGenre,
   updateGenre,
-  deleteGenre,
+  deleteGenreById,
 };

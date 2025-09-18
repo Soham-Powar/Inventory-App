@@ -6,5 +6,6 @@ genreRouter.get("/", genreController.genresGet);
 genreRouter.get("/new", genreController.genresNewGet);
 genreRouter.post("/new", genreController.genresNewPost);
 genreRouter.get("/:id", genreController.genresIdGet);
+genreRouter.get("/delete/:id", genreController.genresIdDelete);
 
 module.exports = genreRouter;

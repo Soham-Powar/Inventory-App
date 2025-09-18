@@ -25,6 +25,8 @@
 		}
 
 		li {
+			display: flex;
+			justify-content: space-between;
 			background-color: #f9f9f9;
 			margin: 10px 0;
 			padding: 12px 15px;
@@ -53,6 +55,25 @@
 		a.new-genre:hover {
 			background-color: #45a049;
 		}
+
+		.remove-btn>a {
+			color: red;
+			text-decoration: none;
+		}
+
+		.remove-btn {
+			color: red;
+			text-align: center;
+			line-height: 30px;
+			text-decoration: none;
+			font-weight: bold;
+			transition: transform 0.2s ease, background 0.2s ease;
+		}
+
+		.remove-btn:hover {
+			transform: scale(1.2);
+			color: #c0392b;
+		}
 	</style>
 </head>
 
@@ -71,6 +92,9 @@
 					<li>
 						<a href="/genres/<%= genre.id %>">
 							<%= genre.name %>
+						</a>
+						<a href="/genres/delete/<%= genre.id %>" class="remove-btn">
+							X
 						</a>
 					</li>
 					<% }) %>

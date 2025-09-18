@@ -48,3 +48,13 @@ exports.genresNewPost = async (req, res) => {
 };
 
 // hello i am the creator's girlfriend, if you are reading this, stay away from him!!! 😡
+
+exports.genresIdDelete = async (req, res) => {
+  try {
+    await db.deleteGenreById(req.params.id);
+    res.redirect("/genres");
+  } catch (err) {
+    console.err(err);
+    res.status(500).send("Failed to delete genre");
+  }
+};

@@ -3,7 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Add Film</title>
+	<title>
+		<%= film ? "Edit Film" : "Add Film" %>
+	</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -67,34 +69,41 @@
 
 <body>
 	<div class="container">
-		<h1>Add New Film</h1>
+		<h1>
+			<%= film ? "Edit Film" : "Add Film" %>
+		</h1>
 
-		<form action="/films/new" method="POST">
+		<form action="<%= film ? '/films/update/' + film.id : '/films/new' %>" method="POST">
 			<label for="title">Film Name:</label>
-			<input type="text" id="title" name="title" required>
+			<input type="text" id="title" name="title" value="<%= film ? film.title : '' %>" required>
 
 			<label for="description">Description:</label>
-			<input type="text" id="description" name="description" required>
+			<input type="text" id="description" name="description" value="<%= film ? film.description : '' %>" required>
 
 			<label for="release_year">Release Year:</label>
-			<input type="number" id="release_year" name="release_year" min="1000" max="2100" required>
+			<input type="number" id="release_year" name="release_year" min="1000" max="2100"
+				value="<%= film ? film.release_year : '' %>" required>
 
 			<label for="rating">Rating(Out of 10): </label>
-			<input type="number" id="rating" name="rating" min="0" max="10" required>
+			<input type="number" id="rating" name="rating" min="0" max="9.9" step="any"
+				value="<%= film ? film.rating : '' %>" required>
 
 			<label for="watched">Watched?</label>
-			<input type="checkbox" name="watched" id="watched">
+			<input type="checkbox" name="watched" id="watched" <%=film && film.watched ? "checked" : '' %> >
 
 			<label for="genre">Genre:</label>
 			<select name="genre" id="genre" required>
 				<% allGenres.forEach(genre=> { %>
-					<option value="<%= genre.id %>">
+					<option value="<%= genre.id %>" <%=film && film.genre_id===genre.id ? "selected" : "" %>>
 						<%= genre.name %>
 					</option>
 					<% }) %>
 			</select>
 
-			<button type="submit">Create</button>
+			<button type="submit">
+				<%= film ? "Update" : "Create" %>
+			</button>
+		</form>
 		</form>
 
 		<a href="/films" class="back-link">&larr; Back to Films</a>

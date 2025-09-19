@@ -1,4 +1,5 @@
 const db = require("../db/queries/films");
+const genreDb = require("../db/queries/genres");
 
 exports.filmsGet = async (req, res) => {
   try {
@@ -25,9 +26,8 @@ exports.toggleWatched = async (req, res) => {
 };
 
 exports.filmsNewGet = async (req, res) => {
-  const genreDb = require("../db/queries/genres");
   const allGenres = await genreDb.getAllGenres();
-  res.render("films/new", { allGenres });
+  res.render("films/form", { film: null, allGenres });
 };
 
 exports.filmsNewPost = async (req, res) => {
@@ -49,5 +49,35 @@ exports.filmsNewPost = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.redirect("/films");
+  }
+};
+
+exports.filmsUpdateGet = async (req, res) => {
+  const filmId = req.params.id;
+  const film = await db.getFilmById(filmId);
+  const allGenres = await genreDb.getAllGenres();
+
+  res.render("films/form", { film, allGenres });
+};
+
+exports.filmsUpdatePost = async (req, res) => {
+  try {
+    const filmId = req.params.id;
+    const { title, description, release_year, rating, watched, genre } =
+      req.body;
+
+    await db.updateFilm(filmId, {
+      title,
+      description,
+      release_year,
+      rating,
+      watched: watched === "on",
+      genre_id: genre,
+    });
+
+    res.redirect("/films");
+  } catch (err) {
+    console.error("Error updating film:", err);
+    res.status(500).send("Server error");
   }
 };

@@ -51,6 +51,28 @@
 		a.new-film:hover {
 			background-color: #45a049;
 		}
+
+		.edit-btn {
+			display: inline-block;
+			padding: 6px 12px;
+			background-color: #2196F3;
+			/* blue */
+			color: white;
+			text-decoration: none;
+			border-radius: 4px;
+			font-size: 0.9rem;
+			transition: background-color 0.2s ease, transform 0.2s ease;
+		}
+
+		.edit-btn:hover {
+			background-color: #1976D2;
+			transform: scale(1.05);
+		}
+
+		.edit-btn:hover {
+			background-color: #1976D2;
+			transform: scale(1.05);
+		}
 	</style>
 </head>
 
@@ -94,6 +116,9 @@
 									<input type="checkbox" name="watched" onchange="this.form.submit()" <%=film.watched
 										? "checked" : "" %> >
 								</form>
+							</td>
+							<td>
+								<a href="/films/update/<%= film.id %>" class="edit-btn">Edit</a>
 							</td>
 						</tr>
 						<% }) %>
